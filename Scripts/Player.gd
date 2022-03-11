@@ -22,6 +22,11 @@ func _physics_process(delta: float) -> void:
 	
 	_set_animation()
 	
+	for platforms in get_slide_count():
+		var collision = get_slide_collision(platforms)
+		if collision.collider.has_method("collide_with"):
+			collision.collider.collide_with(collision, self)
+	
 func _get_input():
 	velocity.x = 0
 	var move_direction = int(Input.is_action_pressed("move_right")) - int(Input.is_action_pressed("move_left"))
@@ -61,7 +66,7 @@ func knockback():
 	velocity.x = -knockback_dir * knockback_int
 	velocity = move_and_slide(velocity)
 	
-func _on_hurtbox_body_entered(body):
+func _on_hurtbox_body_entered(_body):
 	health -= 1
 	hurted = true
 	knockback()
@@ -71,4 +76,5 @@ func _on_hurtbox_body_entered(body):
 	hurted = false
 	if health < 1:
 		queue_free()
+		# warning-ignore:return_value_discarded
 		get_tree().reload_current_scene()
