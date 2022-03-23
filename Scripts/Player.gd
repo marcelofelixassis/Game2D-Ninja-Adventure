@@ -1,5 +1,6 @@
 extends KinematicBody2D
 
+var up = Vector2.UP
 var velocity = Vector2.ZERO
 var move_speed = 480
 var gravity = 1200
@@ -13,10 +14,12 @@ onready var raycasts = $raycasts
 
 func _physics_process(delta: float) -> void:
 	velocity.y += gravity * delta
+	velocity.x = 0
 	
-	_get_input()
+	if !hurted:
+		_get_input()
 	
-	velocity = move_and_slide(velocity)
+	velocity = move_and_slide(velocity, up)
 	
 	is_grounded = _check_is_grounded()
 	
