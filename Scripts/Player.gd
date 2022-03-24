@@ -16,8 +16,7 @@ func _physics_process(delta: float) -> void:
 	velocity.y += gravity * delta
 	velocity.x = 0
 	
-	if !hurted:
-		_get_input()
+	_get_input()
 	
 	velocity = move_and_slide(velocity, up)
 	
