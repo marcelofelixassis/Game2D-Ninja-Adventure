@@ -44,7 +44,7 @@ func _set_animation():
 func _on_hitbox_body_entered(body: Node):
 	hitted = true
 	healt -= 1
-	body.velocity.y -= 300
+	body.velocity.y = body.jump_force / 2
 	yield(get_tree().create_timer(0.2), "timeout")
 	hitted = false
 	if healt < 1:

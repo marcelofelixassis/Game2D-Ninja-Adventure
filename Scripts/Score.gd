@@ -1,5 +1,8 @@
 extends Label
 
-
 func _process(delta: float) -> void:
-	text = String(Global.score)
+	text = "000" + String(Global.score)
+	if Global.score >= 10:
+		text = "00" + String(Global.score)
+	if Global.score >= 100:
+		text = String(Global.score)
