@@ -26,6 +26,7 @@ func _start_tween():
 		self, "follow", move_direction, Vector2.ZERO, duration,
 		Tween.TRANS_LINEAR, Tween.EASE_IN_OUT, duration + WAIT_DURATION * 2
 	)
+	print(move_direction)
 	tween.start()
 
 func _physics_process(delta: float) -> void:

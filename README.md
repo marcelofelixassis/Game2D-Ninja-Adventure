@@ -11,5 +11,5 @@ https://pixelfrog-assets.itch.io/pixel-adventure-2
 
 ## Future features
 
-- Change the score to count the number of fruits separately (apple, banana, orange, ...)
+- Change fruits to coins
 - Apply "hit" animation when finish timer time

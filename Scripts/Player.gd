@@ -20,7 +20,7 @@ signal change_life(player_health)
 func _ready() -> void:
 	connect("change_life", get_parent().get_node("HUD/HBoxContainer/Holder"), "on_change_life")
 	emit_signal("change_life", max_health)
-	position.x = Global.checkpoint_pos
+	# position.x = Global.checkpoint_pos
 
 func _physics_process(delta: float) -> void:
 	velocity.y += gravity * delta
