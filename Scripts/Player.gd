@@ -93,3 +93,8 @@ func _on_hurtbox_body_entered(_body):
 
 func hit_checkpoint():
 	Global.checkpoint_pos = position.x + 23
+
+
+func _on_headCollider_body_entered(body):
+	if body.has_method("destroy"):
+		body.destroy()
