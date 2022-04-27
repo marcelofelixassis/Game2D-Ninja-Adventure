@@ -201,7 +201,7 @@ radius = 69.0072
 [sub_resource type="RectangleShape2D" id=7]
 extents = Vector2( 11, 2.5 )
 
-[node name="plantie" type="KinematicBody2D"]
+[node name="Plantie" type="KinematicBody2D"]
 collision_layer = 2
 collision_mask = 9
 script = ExtResource( 3 )
@@ -227,7 +227,7 @@ position = Vector2( -16, -24 )
 
 [node name="playerDetector" type="Area2D" parent="."]
 visible = false
-collision_layer = 2
+collision_layer = 0
 
 [node name="collision" type="CollisionShape2D" parent="playerDetector"]
 position = Vector2( 0, -15 )

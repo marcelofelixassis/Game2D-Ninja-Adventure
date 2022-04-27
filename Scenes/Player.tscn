@@ -134,10 +134,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 1,
-"values": [ 0, 0, 1, 2, 3, 4, 5, 6, 7, 8 ]
+"values": [ 0, 1, 2, 3, 4, 5, 6, 7, 8 ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("texture:texture")
@@ -311,7 +311,6 @@ collision_layer = 32
 collision_mask = 2
 
 [node name="collision" type="CollisionShape2D" parent="hurtbox"]
-visible = false
 position = Vector2( -0.5, 1.5 )
 shape = SubResource( 8 )
 
@@ -322,5 +321,6 @@ collision_mask = 16
 position = Vector2( 1.5, -6.5 )
 shape = SubResource( 9 )
 
+[connection signal="area_entered" from="hurtbox" to="." method="_on_hurtbox_area_entered"]
 [connection signal="body_entered" from="hurtbox" to="." method="_on_hurtbox_body_entered"]
 [connection signal="body_entered" from="headCollider" to="." method="_on_headCollider_body_entered"]
