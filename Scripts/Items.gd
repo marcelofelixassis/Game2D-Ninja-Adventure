@@ -4,6 +4,7 @@ export var fruit_score = 1
 
 func _on_items_body_entered(body):
 	if body.name == "Player":
+		$collectedFx.play()
 		$anim.play("collected")
 		Global.score += fruit_score
 

@@ -1,7 +1,8 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Scripts/goal.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Checkpoints/End/End (Idle).png" type="Texture" id=2]
+[ext_resource path="res://Sounds/level_completed.wav" type="AudioStream" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 16, 21.5 )
@@ -68,5 +69,9 @@ amount = 16
 explosiveness = 0.6
 randomness = 0.2
 process_material = SubResource( 7 )
+
+[node name="victoryFx" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 3 )
+volume_db = -20.0
 
 [connection signal="body_entered" from="." to="." method="_on_goal_body_entered"]

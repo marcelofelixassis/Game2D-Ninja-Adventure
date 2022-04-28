@@ -9,5 +9,6 @@ func _ready():
 func _on_goal_body_entered(body: Node) -> void:
 	if body.name == "Player":
 		$confetti.emitting = true
+		$victoryFx.play()
 		changer.change_scene(path)
 		Global.checkpoint_pos = 0
