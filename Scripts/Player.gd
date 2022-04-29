@@ -15,6 +15,8 @@ var knockback_dir = 1
 var knockback_int = 500
 onready var raycasts = $raycasts
 
+var is_pushing = false
+
 signal change_life(player_health)
 
 func _ready() -> void:
@@ -29,6 +31,17 @@ func _physics_process(delta: float) -> void:
 	
 	_get_input()
 	
+	if $pushRight.is_colliding():
+		var object = $pushRight.get_collider()
+		object.move_and_slide(Vector2(30, 0) * move_speed * delta)
+		is_pushing = true
+	elif $pushLeft.is_colliding():
+		var object = $pushLeft.get_collider()
+		object.move_and_slide(Vector2(-30, 0) * move_speed * delta)
+		is_pushing = true
+	else:
+		is_pushing = false
+	
 	velocity = move_and_slide(velocity, up)
 	
 	is_grounded = _check_is_grounded()
@@ -39,7 +52,7 @@ func _physics_process(delta: float) -> void:
 		var collision = get_slide_collision(platforms)
 		if collision.collider.has_method("collide_with"):
 			collision.collider.collide_with(collision, self)
-	
+
 func _get_input():
 	velocity.x = 0
 	var move_direction = int(Input.is_action_pressed("move_right")) - int(Input.is_action_pressed("move_left"))
@@ -49,6 +62,16 @@ func _get_input():
 		$texture.scale.x = move_direction
 		knockback_dir = move_direction
 	
+	if velocity.x > 1:
+		$pushRight.set_enabled(true)
+	else:
+		$pushRight.set_enabled(false)
+	
+	if velocity.x < 0:
+		$pushLeft.set_enabled(true)
+	else:
+		$pushLeft.set_enabled(false)
+
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("jump") and is_grounded:
 		velocity.y = jump_force / 2
@@ -64,7 +87,7 @@ func _set_animation():
 	var anim = "idle"
 	if !is_grounded:
 		anim = "jump"
-	elif velocity.x != 0:
+	elif velocity.x != 0 or is_pushing:
 		anim = "run"
 	
 	if velocity.y > 0 and !is_grounded:
