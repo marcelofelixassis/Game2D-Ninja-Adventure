@@ -21,7 +21,7 @@ signal change_life(player_health)
 
 func _ready() -> void:
 	Global.set("player", self)
-	connect("change_life", get_parent().get_node("HUD/HBoxContainer/Holder"), "on_change_life")
+	var _result = connect("change_life", get_parent().get_node("HUD/HBoxContainer/Holder"), "on_change_life")
 	emit_signal("change_life", max_health)
 	position.x = Global.checkpoint_pos
 
@@ -114,7 +114,7 @@ func _on_hurtbox_body_entered(_body):
 	hurted = false
 	if player_health < 1:
 		queue_free()
-		get_tree().reload_current_scene()
+		var _result = get_tree().reload_current_scene()
 
 func hit_checkpoint():
 	Global.checkpoint_pos = position.x + 23
@@ -123,7 +123,7 @@ func _on_headCollider_body_entered(body):
 	if body.has_method("destroy"):
 		body.destroy()
 
-func _on_hurtbox_area_entered(area):
+func _on_hurtbox_area_entered(_area):
 	player_health -= 1
 	hurted = true
 	emit_signal("change_life", player_health)
@@ -134,4 +134,4 @@ func _on_hurtbox_area_entered(area):
 	hurted = false
 	if player_health < 1:
 		queue_free()
-		get_tree().reload_current_scene()
+		var _result = get_tree().reload_current_scene()
