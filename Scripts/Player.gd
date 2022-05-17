@@ -112,9 +112,7 @@ func _on_hurtbox_body_entered(_body):
 	yield(get_tree().create_timer(0.5), "timeout")
 	get_node("hurtbox/collision").set_deferred("disabled", false)
 	hurted = false
-	if player_health < 1:
-		queue_free()
-		var _result = get_tree().reload_current_scene()
+	game_over()
 
 func hit_checkpoint():
 	Global.checkpoint_pos = position.x + 23
@@ -132,6 +130,9 @@ func _on_hurtbox_area_entered(_area):
 	yield(get_tree().create_timer(0.5), "timeout")
 	get_node("hurtbox/collision").set_deferred("disabled", false)
 	hurted = false
+	game_over()
+
+func game_over() -> void:
 	if player_health < 1:
 		queue_free()
-		var _result = get_tree().reload_current_scene()
+		get_tree().change_scene("res://Prefabs/GameOver.tscn")
