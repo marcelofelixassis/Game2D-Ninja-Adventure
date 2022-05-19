@@ -7,7 +7,7 @@ var gravity = 1200
 var jump_force = -820
 var is_grounded
 
-var player_health = 3
+# var player_health = 3
 var max_health = 3
 
 var hurted = false
@@ -104,9 +104,9 @@ func knockback():
 	velocity = move_and_slide(velocity)
 	
 func _on_hurtbox_body_entered(_body):
-	player_health -= 1
+	Global.player_health -= 1
 	hurted = true
-	emit_signal("change_life", player_health)
+	emit_signal("change_life", Global.player_health)
 	knockback()
 	get_node("hurtbox/collision").set_deferred("disabled", true)
 	yield(get_tree().create_timer(0.5), "timeout")
@@ -122,9 +122,9 @@ func _on_headCollider_body_entered(body):
 		body.destroy()
 
 func _on_hurtbox_area_entered(_area):
-	player_health -= 1
+	Global.player_health -= 1
 	hurted = true
-	emit_signal("change_life", player_health)
+	emit_signal("change_life", Global.player_health)
 	knockback()
 	get_node("hurtbox/collision").set_deferred("disabled", true)
 	yield(get_tree().create_timer(0.5), "timeout")
@@ -133,6 +133,6 @@ func _on_hurtbox_area_entered(_area):
 	game_over()
 
 func game_over() -> void:
-	if player_health < 1:
+	if Global.player_health < 1:
 		queue_free()
-		get_tree().change_scene("res://Prefabs/GameOver.tscn")
+		var _notuse = get_tree().change_scene("res://Prefabs/GameOver.tscn")
