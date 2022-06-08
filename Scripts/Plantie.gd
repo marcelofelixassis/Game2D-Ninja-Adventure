@@ -30,7 +30,7 @@ func shoot():
 
 func _set_animation():
 	var anim = "idle"
-	
+	print (player)
 	if player:
 		if $playerDetector.overlaps_body(player):
 			anim = "attack"
@@ -55,7 +55,7 @@ func _on_hitbox_body_entered(body: Node):
 		get_node("hitbox/collision").set_deferred("disabled", true)
 
 func _on_playerDetector_body_entered(body):
-	$anim.play("attack")
+	_set_animation()
 
 func _on_playerDetector_body_exited(body):
 	$anim.play("idle")

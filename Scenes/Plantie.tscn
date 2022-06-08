@@ -227,7 +227,6 @@ shape = SubResource( 1 )
 position = Vector2( -16, -24 )
 
 [node name="playerDetector" type="Area2D" parent="."]
-visible = false
 collision_layer = 0
 
 [node name="collision" type="CollisionShape2D" parent="playerDetector"]
