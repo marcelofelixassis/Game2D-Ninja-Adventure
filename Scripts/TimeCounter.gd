@@ -3,7 +3,7 @@ extends Control
 export (int) var minutes = 0
 export (int) var seconds = 0
 
-func _process(delta) -> void:
+func _process(_delta) -> void:
 	if minutes > 0 and seconds <= 0:
 		minutes -= 1
 		seconds = 59
@@ -20,8 +20,9 @@ func _process(delta) -> void:
 	
 	if seconds <= 0:
 		$Timer.stop()
-		yield(get_tree().create_timer(0.5), "timeout")
-		get_tree().reload_current_scene()
+		# yield(get_tree().create_timer(0.5), "timeout")
+		if get_tree().reload_current_scene() != OK:
+			print("error")
 
 
 
