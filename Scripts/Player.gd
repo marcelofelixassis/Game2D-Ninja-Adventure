@@ -132,3 +132,7 @@ func playerDamage():
 	get_node("hurtbox/collision").set_deferred("disabled", false)
 	hurted = false
 	game_over()
+
+
+func _on_Trigger_PlayerEntered():
+	print('asd')
